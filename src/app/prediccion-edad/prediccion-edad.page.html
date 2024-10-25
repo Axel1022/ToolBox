@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Predicción De Edad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="height: 93vh">
+    <ion-card>
+      <ion-text>
+        <p>
+          Ingresa tu nombre y te diremos la edad probable de esa persona.
+        </p>
+      </ion-text>
+      <form (ngSubmit)="predecirEdad()">
+        <ion-item>
+          <ion-label position="floating">Nombre:</ion-label>
+          <ion-input name="nombre" [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="block" style="margin-top: 20px">
+          Predecir Edad
+        </ion-button>
+      </form>
+    </ion-card>
+
+    <!-- Tarjeta para mostrar el resultado de la edad -->
+    <ion-card *ngIf="resultado.name" style="height: 68vh; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+      <ion-text>
+        <h2>Nombre: {{resultado.name}}</h2>
+        <p>Edad estimada: {{resultado.age}} años</p>
+        <p>Cantidad de ocurrencias en la base de datos: {{resultado.count}}</p>
+      </ion-text>
+    </ion-card>
+  </ion-card>
+</ion-content>

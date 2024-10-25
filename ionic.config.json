@@ -1,0 +1,7 @@
+{
+  "name": "ToolBox",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Búsqueda de Universidades</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="height: 93vh">
+    <ion-card>
+      <ion-text>
+        <p>
+          Ingresa un país y te mostraremos las universidades que se encuentran en él.
+        </p>
+      </ion-text>
+      <form (ngSubmit)="buscarUniversidades()">
+        <ion-item>
+          <ion-label position="floating">País:</ion-label>
+          <ion-input name="pais" [(ngModel)]="pais" placeholder="Ingrese el país" required></ion-input>
+        </ion-item>
+        <ion-button expand="block" style="margin-top: 20px" type="submit">
+          Buscar Universidades
+        </ion-button>
+      </form>
+    </ion-card>
+
+    <ion-card *ngIf="universidades.length > 0" style="height: auto; text-align: center; display: flex; flex-direction: column; justify-content: center; margin-top: 20px;">
+      <ion-text>
+        <h2>Universidades en {{pais}}</h2>
+      </ion-text>
+      <ion-list>
+        <ion-item *ngFor="let universidad of universidades">
+          <ion-label>
+            <h3>{{universidad.name}}</h3>
+            <p>
+              <a [href]="universidad.web_pages[0]" target="_blank">{{universidad.web_pages[0]}}</a>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </ion-card>
+</ion-content>

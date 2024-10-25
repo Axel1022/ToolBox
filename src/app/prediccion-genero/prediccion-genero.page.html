@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Predicción De Género</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="height: 93vh">
+    <ion-card>
+      <ion-text>
+        <p>
+          Ingresa tu nombre y te diremos si el nombre es de hombre o de mujer.
+        </p>
+      </ion-text>
+      <form>
+        <ion-item>
+          <ion-label position="floating">Nombre:</ion-label>
+          <ion-input name="nombre" [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
+        </ion-item>
+        <ion-button (click)="predecirGenero()" expand="block" style="margin-top: 20px">
+          Predecir Género
+        </ion-button>
+      </form>
+    </ion-card>
+
+    <ion-card *ngIf="resultado.name" style="height: 68vh; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+      <ion-icon [name]="resultado.gender === 'male' ? 'man-outline' : 'woman-outline'"
+                [color]="resultado.gender === 'male' ? 'primary' : 'danger'"
+                style="font-size: 80px;">
+      </ion-icon>
+      <ion-text>
+        <h2>Nombre: {{resultado.name}}</h2>
+        <p>Género:
+          <span [ngStyle]="{'color': resultado.gender === 'male' ? 'blue' : 'red'}">
+            {{ resultado.gender === 'male' ? 'Hombre' : 'Mujer' }}
+          </span>
+        </p>
+        <p>Probabilidad: {{(resultado.probability * 100) | number:'1.0-2'}}%</p>
+        <p>Cantidad de ocurrencias en la base de datos: {{resultado.count}}</p>
+      </ion-text>
+    </ion-card>
+  </ion-card>
+  <!--/* Gary Alexande Campusano Paredes
+  2022-1022 */-->
+</ion-content>
